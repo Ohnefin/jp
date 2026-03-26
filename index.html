@@ -6,9 +6,12 @@
     <title>Inveniam</title>
     <style>
         :root {
-            --bg-color: #050505;
+            /* Un negro ligeramente menos puro para evitar fatiga visual */
+            --bg-color: #080808; 
+            /* Un blanco roto/gris muy claro para el texto */
             --text-color: #e0e0e0;
-            --accent-color: #444;
+            /* Gris oscuro para la línea decorativa */
+            --accent-color: #333;
         }
 
         body {
@@ -19,48 +22,59 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            /* Fuente monoespaciada limpia */
             font-family: 'Courier New', Courier, monospace;
             overflow: hidden;
+            /* Evita el cursor de selección de texto para mantener estética */
             cursor: default;
         }
 
         .content {
             text-align: center;
             padding: 20px;
+            /* Animación de entrada: suave, una sola vez */
+            animation: fadeInOnce 1.5s ease-out forwards;
         }
 
         h1 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 100;
-            letter-spacing: 0.3em;
+            letter-spacing: 0.35em;
             text-transform: uppercase;
             margin: 0;
-            opacity: 0.8;
-            animation: breathe 5s ease-in-out infinite;
+            /* Nitidez máxima una vez cargada */
+            opacity: 1;
             user-select: none;
         }
 
         .line {
             height: 1px;
-            width: 50px;
+            width: 80px; /* Ancho fijo */
             background-color: var(--accent-color);
-            margin: 20px auto;
-            transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            margin: 25px auto 0 auto;
         }
 
-        body:hover .line {
-            width: 150px;
-            background-color: #888;
+        /* Definición de la única animación de entrada */
+        @keyframes fadeInOnce {
+            0% { 
+                opacity: 0; 
+                transform: translateY(5px); /* Pequeño desplazamiento hacia arriba */
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateY(0);
+            }
         }
 
-        @keyframes breathe {
-            0%, 100% { opacity: 0.4; letter-spacing: 0.3em; filter: blur(1px); }
-            50% { opacity: 0.9; letter-spacing: 0.35em; filter: blur(0px); }
-        }
-
-        /* Responsive */
+        /* Responsive para móviles */
         @media (max-width: 600px) {
-            h1 { font-size: 1rem; letter-spacing: 0.2em; }
+            h1 { 
+                font-size: 0.9rem; 
+                letter-spacing: 0.25em; 
+            }
+            .line {
+                width: 60px;
+            }
         }
     </style>
 </head>
